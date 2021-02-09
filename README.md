@@ -37,6 +37,16 @@
 不过，这第一阶段，我打算全部采用前后端分离技术。
 - 落地页和 admin 均采用 vue
 - 服务端采用 koa2
-- 数据库使用 mongodb
+- 数据库使用 mysql(保证一致性，比如同时插入两张表同时成功或同时失败)
 
 # 2021.2.7
+1. 基于 koa 搭建基础框架
+```bash
+yarn add koa koa-bodyparser koa-router koa-logger 
+```
+初步搭建 MVC 结构， Models, Controllers 
+2. 使用 Sequelize 和 Mysql 搭建基础的数据库
+[sequelize](https://www.sequelize.com.cn/core-concepts/getting-started)
+```bash
+yarn add sequelize mysql2
+```
