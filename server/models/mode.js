@@ -1,23 +1,30 @@
 const moment = require('moment');
 
 module.exports = (sequelize, DataTypes) => {
-	const Url = sequelize.define('url', {
-    pathId: {
-      type: DataTypes.INTEGER(11),
-      primaryKey: true,
-      autoIncrement: true
+	const Mode = sequelize.define('mode', {
+    modeId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isInt: { msg: "只能是整数！" },
+        max: 100,
+        min: 0
+      }
     },
-    category: {
+    text: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    path: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      unique: true,
+      validate: {
+        len: {
+          args: [2, 10],
+          msg: "长度必须在2到10之间！"
+        }
+      }
     },
     description: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -33,9 +40,7 @@ module.exports = (sequelize, DataTypes) => {
         return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss')
       }
     }
-  }, {
-    initialAutoIncrement: 202000000
   });
 
-  return Url;
+  return Mode;
 };

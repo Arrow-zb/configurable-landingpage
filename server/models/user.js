@@ -41,6 +41,8 @@ module.exports = (sequelize, DataTypes) => {
         return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss')
       }
     }
+  },{
+    initialAutoIncrement: 609000000
   });
 
   return User;

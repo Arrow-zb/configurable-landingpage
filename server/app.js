@@ -3,6 +3,10 @@ const Router = require('koa-router');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
 
+const { addAlias } = require('module-alias');
+
+addAlias('@', __dirname);
+
 const client = require("./router/client");
 const admin = require("./router/admin");
 

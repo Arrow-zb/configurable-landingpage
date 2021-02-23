@@ -16,7 +16,11 @@ const config = {
       },
       define: {
         timestamps: false, // 默认不加时间戳
-        freezeTableName: false // 表名默认加 s
+        freezeTableName: false, // 表名默认加 s
+        charset: 'utf8',
+        dialectOptions: {
+          collate: 'utf8_general_ci'
+        },
       },
       timezone: '+08:00'
     }
