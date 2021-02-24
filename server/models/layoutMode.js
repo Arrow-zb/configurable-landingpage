@@ -1,7 +1,7 @@
 const moment = require('moment');
 
 module.exports = (sequelize, DataTypes) => {
-	const Mode = sequelize.define('mode', {
+	const LayoutMode = sequelize.define('layoutMode', {
     modeId: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -42,5 +42,5 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  return Mode;
+  return LayoutMode;
 };

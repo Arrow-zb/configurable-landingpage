@@ -2,13 +2,14 @@ const Koa = require('koa');
 const Router = require('koa-router');
 const logger = require('koa-logger');
 const bodyParser = require('koa-bodyparser');
-
 const { addAlias } = require('module-alias');
 
 addAlias('@', __dirname);
 
-const client = require("./router/client");
-const admin = require("./router/admin");
+const send = require('@/utils/send');
+
+const client = require("@/router/client");
+const admin = require("@/router/admin");
 
 const { sequelize } = require('./models');
 const { PORT } = require('./config');
@@ -18,8 +19,11 @@ const app = new Koa();
 const router = new Router();
 
 // 中间件
-app.use(bodyParser());
+app.use(bodyParser({
+  multipart: true
+}));
 app.use(logger());
+app.use(send());
 
 // 路由
 app.use(client);
