@@ -1,9 +1,10 @@
 const {
   UserModel,
-  UrlModel,
+  PathModel,
   CategoryModel,
   LayoutModeModel,
-  BannerModeModel
+  BannerModeModel,
+  ModularModel
 } = require('../models');
 
 async function init() {
@@ -12,7 +13,7 @@ async function init() {
     password: '123456'
   });
 
-  await UrlModel.create({
+  await PathModel.create({
     category: 'arr',
     path: '/test',
     description: 'this is test'
@@ -47,6 +48,19 @@ async function init() {
       modeId: 2,
       text: "文本及操作",
       description: '输入文本以及编辑按钮'
+    }
+  ], { validate: true });
+
+  await ModularModel.bulkCreate([
+    {
+      modular: "banner-modular",
+      text: "Banner",
+      description: 'Banner 模块'
+    },
+    {
+      modular: "footer-modular",
+      text: "Footer",
+      description: 'Footer 模块'
     }
   ], { validate: true });
 }

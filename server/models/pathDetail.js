@@ -1,24 +1,7 @@
 const moment = require('moment');
 
 module.exports = (sequelize, DataTypes) => {
-	const Url = sequelize.define('url', {
-    pathId: {
-      type: DataTypes.INTEGER(11),
-      primaryKey: true,
-      autoIncrement: true
-    },
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    path: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+	const PathDetail = sequelize.define('pathDetail', {
     createdAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
@@ -33,9 +16,16 @@ module.exports = (sequelize, DataTypes) => {
         return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss')
       }
     }
-  }, {
-    initialAutoIncrement: 202000000
   });
 
-  return Url;
+  PathDetail.associate = models => {
+    PathDetail.belongsTo(models.PathModel, {
+      foreignKey: {
+        name: "pathId",
+        allowNull: false
+      }
+    })
+  }
+
+  return PathDetail;
 };
